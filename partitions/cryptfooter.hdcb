@@ -1,0 +1,43 @@
+#!/usr/bin/env hdcb
+# Android cryptfs footer
+define "magic" 4;
+define "major" 2;
+define "minor" 2;
+define "size" 4;
+define "flags" 4;
+define "keysize" 4;
+define "reserved" 1; # array
+define "fs_size" 8;
+define "failures" 4;
+define "algo" 1; # array
+define "master_key" 1; # array
+define "salt" 1; # array
+define "offset" 8;
+define "kdf" 1;
+
+#scrypt
+define "N" 1;
+define "r" 1;
+define "p" 1;
+
+squeeze;
+
+use "magic";
+use "major";
+use "minor";
+use "size";
+use "flags";
+use "keysize";
+use "reserved" 4;
+use "fs_size";
+use "failures";
+use "algo" 64;
+use "reserved" 4;
+use "master_key" 48;
+use "salt" 16;
+use "offset" 2;
+use "size";
+use "kdf";
+use "N";
+use "r";
+use "p";
