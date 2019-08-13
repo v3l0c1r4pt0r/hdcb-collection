@@ -1,0 +1,16 @@
+#!/usr/bin/env hdcb
+define unknown 1
+
+define smaz_magic 4
+define smaz_chunk_flags 4
+define smaz_chunk_len 4
+define smaz_chunk 1 # array
+
+use smaz_magic
+use unknown 4
+flags_b=524288 # 0x80000
+while [ $flags_b -eq 524288 ]; do
+  use smaz_chunk_flags flags_b
+  use smaz_chunk_len chunk_b
+  use smaz_chunk $chunk_b
+done
