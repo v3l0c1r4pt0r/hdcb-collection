@@ -1,0 +1,14 @@
+#!/usr/bin/env hdcb
+define smedia_magic 8
+define unknown 1 # array
+define hdr_length 4
+define data_length 4
+define smedia_hdr 1 # array
+define data 1 # array
+
+use smedia_magic
+use unknown 4
+use hdr_length hdr_b
+use data_length data_b
+use smedia_hdr $(expr $hdr_b - 20)
+use data $data_b
