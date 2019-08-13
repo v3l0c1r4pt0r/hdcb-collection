@@ -1,0 +1,59 @@
+#!/usr/bin/env hdcb
+define itepkg_magic 6
+define itehdr 58
+define itecrc 4
+
+define type 4
+# type is one of:
+# 0 - end
+# 3 - SMEDIA
+# 4 - empty
+# 5 - directory
+# 6 - file
+
+define smedia_address 4
+define smedia_length 4
+define smedia_data 1 # array
+
+define unknown 1 # array
+
+define filename_length 4
+define filename 1 # array
+define file_length 4
+define file 1 # array
+
+use itepkg_magic
+use itehdr
+
+# elements
+while true; do
+  use type type_l
+  case $type_l in
+    0) # end
+      break
+      ;;
+    3) # SMEDIA
+      use smedia_address
+      use smedia_length s_l
+      use smedia_data $s_l
+      ;;
+    4) # empty
+      use unknown 4
+      use unknown 4
+      ;;
+    5) # directory
+      use filename_length fn_l
+      use filename $fn_l
+      ;;
+    6) # file
+      use filename_length fn_l
+      use filename $fn_l
+      use file_length f_l
+      use file $f_l
+      ;;
+    *)
+      echo "unknown type: $type_l"
+      break
+  esac
+done
+use itecrc
