@@ -1,0 +1,22 @@
+#!/usr/bin/env hdcb
+define "signature" 4
+define "entry" 2
+define "pminit" 2
+define "biossel" 2
+define "a0000" 2
+define "b0000" 2
+define "b8000" 2
+define "cs" 2
+define "isprotected" 1
+define "checksum" 1
+
+use "signature"
+use "entry"
+use "pminit"
+use "biossel"
+use "a0000"
+use "b0000"
+use "b8000"
+use "cs"
+use "isprotected"
+use "checksum"
