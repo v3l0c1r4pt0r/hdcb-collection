@@ -1,16 +1,17 @@
 #!/usr/bin/env hdcb
 # IPTV_CMD protocol
-define "magic" 8
+define "hdr_magic" 8
 define "cb_ipv4" 4
 define "cb_port" 2
-define "cmd" 1
+define "cmd_magic" 1
+define "cmd" 2
 define "len" 2
 define "checksum" 1
 define "payload" 1 # array
-use "magic"
+use "hdr_magic"
 use "cb_ipv4"
 use "cb_port"
-let cursor+=2
+use "cmd_magic"
 use "cmd"
 use "len" len_b
 use "checksum"
